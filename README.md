@@ -1,4 +1,4 @@
-# Module 7 PROJECT: HTML, CSS, and JavaScript
+# Where in the World? 🌎
 ## Overview
 This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Additionally, this project aims to assess my ability to apply the skills and knowledge acquired throughout the MERN Stack course in a practical, real-world scenario. 
 
