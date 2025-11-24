@@ -1,0 +1,15 @@
+h2{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card{
+    width: 16vw;
+}
+.card-img-top{
+    height: 9.5vw; 
+    background-color: rgb(211, 211, 211);
+}
+#theme-toggler{
+    background-color: transparent;
+}
