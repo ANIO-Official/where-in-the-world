@@ -1,15 +1,69 @@
+body{
+    font-family: "Nunito Sans",Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header, main{
+    padding: 0 5vw;
+}
+
+/* GENERAL FONT*/
+h1{
+    font-size: 1.5rem;
+}
 h2{
     font-size: 1.25rem;
     font-weight: bold;
 }
+/*HEADER*/
+#header-content-container{
+    height: 4vw;
+    width: 100%;
+}
+/*Interaction Query Container*/
+#interaction-query-container{
+    height: 5vw;
+}
+#theme-toggler{
+    background-color: transparent;
+    border: transparent;
+}
+#toggle-text{
+    font-weight:600;
+}
 
+/*Cards*/
 .card{
     width: 16vw;
+    margin-right: 4vw;
 }
 .card-img-top{
     height: 9.5vw; 
     background-color: rgb(211, 211, 211);
 }
-#theme-toggler{
-    background-color: transparent;
+
+/*MOBILE*/
+@media (max-width: 450px){
+    h1{
+        font-size: 1rem;
+    }
+    h2{
+        font-size: 0.75rem;
+    }
+    /*HEADER*/
+    #header-content-container{
+        height:15vw;
+    }
+    /*Interaction Query Container*/
+    #interaction-query-container{
+        height: 16vw;
+    }
+    .card{
+        width: 61vw;
+        margin: auto 0 10.5vw 5vw;
+    }
+
+    .card-img-top{
+    height: 36vw; 
+    }
+
 }

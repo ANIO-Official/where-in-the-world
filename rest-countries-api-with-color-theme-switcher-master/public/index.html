@@ -11,20 +11,25 @@
     <!--Link CSS Sheet-->
     <link rel="stylesheet" href="../src/styles.css" />
 
+    <!-- Font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
 </head>
-<body>
-    <header>
-        <div id="header-content-container" class="row-col-md d-flex justify-content-between bg-primary">
+<body class="d-flex flex-column justify-content-center d-md-inline">
+    <header class="d-flex">
+        <div id="header-content-container" class="row-col-md d-flex justify-content-between align-items-center">
             <div id="header-message-container" class="row-col-md d-flex align-items-center">
                 <h1>Where in the world?</h1>
             </div>
             <div id="theme-toggler-container" class="row-col-md d-flex align-items-center">
-                <button id="theme-toggler"><h2>🌙 Dark Mode</h2></button>
+                <button id="theme-toggler"><h2 id="toggle-text">🌙 Dark Mode</h2></button>
             </div>
         </div>
     </header>
     <main>
-        <div id="interaction-query-container" class="row-col-md d-flex justify-content-between bg-primary-light">
+        <div id="interaction-query-container" class="row-col-md d-flex flex-column flex-md-row justify-content-between mb-4 mb-md-0">
             <div id="country-search-bar-container" class="row-col-md">
                 <input id="country-search-bar" type="search" placeholder="Search for a country... Try 'Cambodia!'">
             </div>
@@ -40,9 +45,42 @@
             </div>
         </div>
         <div id="main-content-container">
-                <div id="cards-grid">
-                    <ul id="cards-batch">
+                <div id="card-grid-container">
+                    <ul id="cards-batch" class="row-col-md d-md-flex flex-md-row justify-content-center">
                          <!-- style="display: none;" -->
+                        <li class="card-template card">
+                            <img src="..." class="card-img-top" alt="national-flag"/>
+                            <div class="card-body">
+                                <h2 class="card-title">Country Name</h2>
+                                <p class="card-text pb-4 pt-1">
+                                    <b>Population:</b> 99,999,999<br>
+                                    <b>Region:</b> Europe<br>
+                                    <b>Capital:</b> Belin<br>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="card-template card">
+                            <img src="..." class="card-img-top" alt="national-flag"/>
+                            <div class="card-body">
+                                <h2 class="card-title">Country Name</h2>
+                                <p class="card-text pb-4 pt-1">
+                                    <b>Population:</b> 99,999,999<br>
+                                    <b>Region:</b> Europe<br>
+                                    <b>Capital:</b> Belin<br>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="card-template card">
+                            <img src="..." class="card-img-top" alt="national-flag"/>
+                            <div class="card-body">
+                                <h2 class="card-title">Country Name</h2>
+                                <p class="card-text pb-4 pt-1">
+                                    <b>Population:</b> 99,999,999<br>
+                                    <b>Region:</b> Europe<br>
+                                    <b>Capital:</b> Belin<br>
+                                </p>
+                            </div>
+                        </li>
                         <li class="card-template card">
                             <img src="..." class="card-img-top" alt="national-flag"/>
                             <div class="card-body">
