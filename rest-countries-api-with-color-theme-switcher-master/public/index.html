@@ -18,7 +18,7 @@
 
 </head>
 <body class="d-flex flex-column justify-content-center d-md-inline">
-    <header class="d-flex">
+    <header class="d-flex shadow-sm">
         <div id="header-content-container" class="row-col-md d-flex justify-content-between align-items-center">
             <div id="header-message-container" class="row-col-md d-flex align-items-center">
                 <h1>Where in the world?</h1>
@@ -29,12 +29,12 @@
         </div>
     </header>
     <main>
-        <div id="interaction-query-container" class="row-col-md d-flex flex-column flex-md-row justify-content-between mb-4 mb-md-0">
+        <div id="interaction-query-container" class="row-col-md d-flex flex-column flex-md-row justify-content-between mb-4">
             <div id="country-search-bar-container" class="row-col-md">
-                <input id="country-search-bar" type="search" placeholder="Search for a country... Try 'Cambodia!'">
+                <input id="country-search-bar" class="shadow-sm" type="search" placeholder="Search for a country... Try 'Cambodia!'">
             </div>
             <div id="region-select-container" class="row-col-md">
-                <select name="region" id="region-select">
+                <select name="region" id="region-select" class="shadow-sm">
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
                     <option value="America">America</option>
@@ -44,9 +44,9 @@
                 </select>
             </div>
         </div>
-        <div id="main-content-container">
+        <div id="main-content-container" class="pt-4">
                 <div id="card-grid-container">
-                    <ul id="cards-batch" class="row-col-md d-md-flex flex-md-row justify-content-center">
+                    <ul id="cards-batch" class="row-col-md d-md-flex flex-md-row">
                          <!-- style="display: none;" -->
                         <li class="card-template card">
                             <img src="..." class="card-img-top" alt="national-flag"/>

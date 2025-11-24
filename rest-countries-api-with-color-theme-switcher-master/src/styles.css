@@ -1,27 +1,39 @@
+:root{
+    --input-border-rounded: 0.25vw;
+    --input-border-rounded-mobile: 1vw;
+    --light-mode-background: hsl(0, 0%, 99%);
+    --light-mode-input:hsl(0, 0%, 50%);
+    --light-mode-text: hsl(200, 15%, 8%);
+    --dark-mode-background: hsl(207, 26%, 17%);
+    --dark-mode-elements: hsl(209, 23%, 22%);
+    --its-white: hsl(0, 100%, 100%);
+}
 body{
     font-family: "Nunito Sans",Verdana, Geneva, Tahoma, sans-serif;
 }
 
-header, main{
-    padding: 0 5vw;
+header{
+    padding: 0 8vw;
+    background-color: var(--its-white);
 }
-
-/* GENERAL FONT*/
+main{
+    padding: 0 8vw;
+    background-color: var(--light-mode-background);
+}
+/* GENERAL FONT=============================*/
 h1{
     font-size: 1.5rem;
+    font-weight: 800;
 }
 h2{
     font-size: 1.25rem;
     font-weight: bold;
 }
-/*HEADER*/
+/*HEADER=====================================*/
+
 #header-content-container{
     height: 4vw;
     width: 100%;
-}
-/*Interaction Query Container*/
-#interaction-query-container{
-    height: 5vw;
 }
 #theme-toggler{
     background-color: transparent;
@@ -29,6 +41,34 @@ h2{
 }
 #toggle-text{
     font-weight:600;
+}
+/*MAIN CONTENT===============================*/
+
+/*Interaction Query Container*/
+#interaction-query-container{
+    margin: 0 1.8vw 2vw;
+    padding: 2vw 0;
+}
+#country-search-bar{
+    width: 35vw;
+    height: 3vw;
+    border-color: transparent;
+    border-radius: var(--input-border-rounded);
+}
+#region-select{
+    height: 3vw;
+    width: 10vw;
+    padding-left: 1vw;
+    margin-right: 2.5vw;
+    border-color: transparent;
+    border-radius: var(--input-border-rounded);
+}
+select option{
+    border: transparent;
+}
+
+select option:last-of-type{
+    border-radius: 5vw;
 }
 
 /*Cards*/
@@ -51,12 +91,27 @@ h2{
     }
     /*HEADER*/
     #header-content-container{
-        height:15vw;
+        height:20vw;
+        padding-top: 2vw;
     }
     /*Interaction Query Container*/
     #interaction-query-container{
-        height: 16vw;
+        padding-top: 3vw;
     }
+    #country-search-bar{
+        width: 80vw;
+        height: 10vw;
+        margin-bottom: 10vw;
+        margin-top: 3vw;
+        border-radius: var(--input-border-rounded-mobile);
+    }
+    #region-select{
+        height: 13vw;
+        width: 50vw;
+        border-radius: var(--input-border-rounded-mobile);
+    }
+
+    /*CARDS*/
     .card{
         width: 61vw;
         margin: auto 0 10.5vw 5vw;
