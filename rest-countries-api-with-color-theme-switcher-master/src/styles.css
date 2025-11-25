@@ -46,7 +46,7 @@ h2{
 
 /*Interaction Query Container*/
 #interaction-query-container{
-    margin: 0 1.8vw 2vw;
+    margin: 0 0.5vw;
     padding: 2vw 0;
 }
 #country-search-bar{
@@ -59,11 +59,13 @@ h2{
     height: 3vw;
     width: 10vw;
     padding-left: 1vw;
-    margin-right: 2.5vw;
     border-color: transparent;
     border-radius: var(--input-border-rounded);
+
+    appearance: none;
 }
-select option{
+option{
+    display: flex;
     border: transparent;
 }
 
@@ -72,13 +74,20 @@ select option:last-of-type{
 }
 
 /*Cards*/
+ul{
+    gap: 4vw 0;
+}
 .card{
     width: 16vw;
     margin-right: 4vw;
+    padding: 0;
 }
 .card-img-top{
     height: 9.5vw; 
     background-color: rgb(211, 211, 211);
+}
+.card-body{
+    padding: 1vw;
 }
 
 /*MOBILE*/

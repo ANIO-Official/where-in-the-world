@@ -19,21 +19,21 @@
 </head>
 <body class="d-flex flex-column justify-content-center d-md-inline">
     <header class="d-flex shadow-sm">
-        <div id="header-content-container" class="row-col-md d-flex justify-content-between align-items-center">
-            <div id="header-message-container" class="row-col-md d-flex align-items-center">
+        <div id="header-content-container" class="row-cols-md d-flex justify-content-between align-items-center">
+            <div id="header-message-container" class="row-cols-md d-flex align-items-center">
                 <h1>Where in the world?</h1>
             </div>
-            <div id="theme-toggler-container" class="row-col-md d-flex align-items-center">
+            <div id="theme-toggler-container" class="row-cols-md d-flex align-items-center">
                 <button id="theme-toggler"><h2 id="toggle-text">🌙 Dark Mode</h2></button>
             </div>
         </div>
     </header>
     <main>
-        <div id="interaction-query-container" class="row-col-md d-flex flex-column flex-md-row justify-content-between mb-4">
-            <div id="country-search-bar-container" class="row-col-md">
+        <div id="interaction-query-container" class="row row-cols-md d-flex flex-column flex-md-row justify-content-between mb-4">
+            <div id="country-search-bar-container" class="col-md-10">
                 <input id="country-search-bar" class="shadow-sm" type="search" placeholder="Search for a country... Try 'Cambodia!'">
             </div>
-            <div id="region-select-container" class="row-col-md">
+            <div id="region-select-container" class="col-md-2">
                 <select name="region" id="region-select" class="shadow-sm">
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
@@ -44,11 +44,11 @@
                 </select>
             </div>
         </div>
-        <div id="main-content-container" class="pt-4">
+        <div id="main-content-container" class="row pt-4">
                 <div id="card-grid-container">
-                    <ul id="cards-batch" class="row-col-md d-md-flex flex-md-row">
+                    <ul id="cards-batch" class="row row-cols-4">
                          <!-- style="display: none;" -->
-                        <li class="card-template card">
+                        <li class="card-template card col">
                             <img src="..." class="card-img-top" alt="national-flag"/>
                             <div class="card-body">
                                 <h2 class="card-title">Country Name</h2>
@@ -59,7 +59,7 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="card-template card">
+                        <li class="card-template card col">
                             <img src="..." class="card-img-top" alt="national-flag"/>
                             <div class="card-body">
                                 <h2 class="card-title">Country Name</h2>
@@ -69,8 +69,8 @@
                                     <b>Capital:</b> Belin<br>
                                 </p>
                             </div>
-                        </li>
-                        <li class="card-template card">
+                        </li>                     
+                        <li class="card-template card col">
                             <img src="..." class="card-img-top" alt="national-flag"/>
                             <div class="card-body">
                                 <h2 class="card-title">Country Name</h2>
@@ -80,8 +80,8 @@
                                     <b>Capital:</b> Belin<br>
                                 </p>
                             </div>
-                        </li>
-                        <li class="card-template card">
+                        </li> 
+                        <li class="card-template card col">
                             <img src="..." class="card-img-top" alt="national-flag"/>
                             <div class="card-body">
                                 <h2 class="card-title">Country Name</h2>
@@ -91,7 +91,18 @@
                                     <b>Capital:</b> Belin<br>
                                 </p>
                             </div>
-                        </li>
+                        </li> 
+                        <li class="card-template card col">
+                            <img src="..." class="card-img-top" alt="national-flag"/>
+                            <div class="card-body">
+                                <h2 class="card-title">Country Name</h2>
+                                <p class="card-text pb-4 pt-1">
+                                    <b>Population:</b> 99,999,999<br>
+                                    <b>Region:</b> Europe<br>
+                                    <b>Capital:</b> Belin<br>
+                                </p>
+                            </div>
+                        </li> 
                     </ul>
                 </div>
             </div>
