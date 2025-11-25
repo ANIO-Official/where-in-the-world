@@ -1,4 +1,5 @@
 :root{
+    /*Base Styling*/
     --input-border-rounded: 0.25vw;
     --input-border-rounded-mobile: 1vw;
     --light-mode-background: hsl(0, 0%, 99%);
@@ -7,20 +8,28 @@
     --dark-mode-background: hsl(207, 26%, 17%);
     --dark-mode-elements: hsl(209, 23%, 22%);
     --its-white: hsl(0, 100%, 100%);
+    /*Accessibility & Interactivity*/
+    --input-focus: hsl(198, 100%, 92%);
+    --invalid-response: hsl(0, 81%, 39%);
+    --valid-response: hsl(145, 81%, 39%);
+
 }
+/*ACCESSIBILITY & INTERACTIVITY=============================*/
+input:focus, select:focus{
+    background-color: var(--input-focus);
+}
+
+input:user-valid{
+    outline: var(--valid-response);
+}
+input:user-invalid{
+    outline: var(--invalid-response);
+}
+
+/*FONT=============================*/
 body{
     font-family: "Nunito Sans",Verdana, Geneva, Tahoma, sans-serif;
 }
-
-header{
-    padding: 0 8vw;
-    background-color: var(--its-white);
-}
-main{
-    padding: 0 8vw;
-    background-color: var(--light-mode-background);
-}
-/* GENERAL FONT=============================*/
 h1{
     font-size: 1.5rem;
     font-weight: 800;
@@ -30,6 +39,10 @@ h2{
     font-weight: bold;
 }
 /*HEADER=====================================*/
+header{
+    padding: 0 8vw;
+    background-color: var(--its-white);
+}
 
 #header-content-container{
     height: 4vw;
@@ -43,6 +56,10 @@ h2{
     font-weight:600;
 }
 /*MAIN CONTENT===============================*/
+main{
+    padding: 0 8vw;
+    background-color: var(--light-mode-background);
+}
 
 /*Interaction Query Container*/
 #interaction-query-container{
@@ -52,6 +69,7 @@ h2{
 #country-search-bar{
     width: 35vw;
     height: 3vw;
+    padding-left: 1vw;
     border-color: transparent;
     border-radius: var(--input-border-rounded);
 }
