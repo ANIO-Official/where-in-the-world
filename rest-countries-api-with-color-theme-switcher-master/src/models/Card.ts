@@ -1,12 +1,14 @@
-export default class Card{
+export default class CountryCard{
     flag: string
+    altText: string
     name: string
     population: number
     region: string
     capital: string
 
-    constructor(flag:string, name:string, population:number, region:string, capital:string){
+    constructor(flag:string, altText:string, name:string, population:number, region:string, capital:string){
         this.flag = flag,
+        this.altText = altText,
         this.name =name,
         this.population = population,
         this.region = region,
