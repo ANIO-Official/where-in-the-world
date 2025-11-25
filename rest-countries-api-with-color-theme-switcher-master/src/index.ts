@@ -1,3 +1,3 @@
 /* GLOBAL VARIABLES */
 
-let cardsData = [] //
+export let cardsData = [] //holds all created cards data

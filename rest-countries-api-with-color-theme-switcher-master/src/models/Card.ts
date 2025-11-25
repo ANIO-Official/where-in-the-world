@@ -1,4 +1,4 @@
-class Card{
+export default class Card{
     flag: string
     name: string
     population: number

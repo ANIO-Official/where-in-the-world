@@ -1,0 +1,25 @@
+{
+  "name": "where-in-the-world",
+  "version": "1.0.0",
+  "description": "This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Additionally, this project aims to assess my ability to apply the skills and knowledge acquired throughout the MERN Stack course in a practical, real-world scenario.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ANIO-Official/where-in-the-world.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ANIO-Official/where-in-the-world/issues"
+  },
+  "homepage": "https://github.com/ANIO-Official/where-in-the-world#readme",
+  "dependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}
