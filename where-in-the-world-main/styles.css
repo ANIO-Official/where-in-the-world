@@ -212,6 +212,22 @@ ul{
     .card-body{
         font-size: 0.7rem;
     }
+    /*DETAILS 'PAGE'=============================*/
+    #flag-img{
+        height: 25vw;
+        width: 35vw;
+        margin-bottom: 10vw;
+    }
+    #detail-image-container h2{
+        height: fit-content;
+    }
+    .detail-border-country{
+        font-size: 0.7rem;
+        padding: 0.25vw 2vw;
+        margin-left: 3vw;
+        width: fit-content;
+    }
+
 }
 
 
