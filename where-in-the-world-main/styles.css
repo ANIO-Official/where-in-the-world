@@ -11,7 +11,8 @@
     --drop-shadow: drop-shadow(0 0 0.55rem rgba(88, 88, 88, 0.137));
     /*Accessibility & Interactivity*/
     --input-focus: hsl(198, 100%, 92%);
-    --invalid-response: hsl(0, 81%, 39%);
+    --invalid-notification: hsl(204, 100%, 26%);
+    --invalid-response: hsl(49, 100%, 60%);
     --valid-response: hsl(145, 81%, 39%);
 
 }
@@ -21,17 +22,17 @@ input:focus, select:focus{
 }
 
 input:user-valid{
-    outline: var(--valid-response);
+    outline: 3px solid var(--valid-response);
 }
 input:user-invalid{
-    outline: var(--invalid-response);
+    outline: 3px solid var(--invalid-response);
 }
 
 #search-error{
     padding-left: 0.5vw;
     margin-top: 1vw;
     font-style: italic;
-    color: var(--invalid-response);
+    color: var(--invalid-notification);
 }
 
 /*FONT=============================*/

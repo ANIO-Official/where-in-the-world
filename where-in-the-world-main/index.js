@@ -243,10 +243,13 @@ function filterByRegion() {
 countrySearchBar.addEventListener('input', (event) => {
     switch (true) {
         case countrySearchBar.validity.patternMismatch:
-            searchInput.setCustomValidity('Ensure the country name uses only letters a-z.');
+            countrySearchBar.setCustomValidity('Ensure the country name uses only letters a-z.');
             break;
-        case countrySearchBar.validity.patternMismatch:
-            searchInput.setCustomValidity('Ensure the country name uses only letters a-z.');
+        case countrySearchBar.validity.tooShort:
+            countrySearchBar.setCustomValidity("3 characters minimum. It makes your search must easier. (o゜▽゜)o☆");
+            break;
+        case countrySearchBar.validity.valid && cardsBatch.childElementCount===0:
+            countrySearchBar.setCustomValidity("Valid but no results! ○|￣|_ (。_。)(＃°Д°)")
             break;
         default: countrySearchBar.setCustomValidity('');
     }
