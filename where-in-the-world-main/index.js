@@ -68,7 +68,7 @@ class FetchError extends Error {
     }
 }
 
-//================EVENT HANDLING======================
+//================MAIN EVENT HANDLING======================
 
 //Load default results
 document.addEventListener('DOMContentLoaded', renderCards);
@@ -191,6 +191,15 @@ function searchForCountry() {
     createFragment(filteredCountryData); //render all filtered items array
     console.log(`Showing ${filteredCountryData.length} results.`); //check
 }
+
+//Remove Filter on Empty and Unfocus. Show all results
+countrySearchBar.addEventListener('blur', ()=>{
+    if(countrySearchBar.value === ""){
+        createFragment(cardsData) //render document fragment of stored data
+        console.log('Returning unfiltered feed.')
+    }
+})
+
 
 //Filter Data Array by Region then load filtered results
 function filterByRegion() {
