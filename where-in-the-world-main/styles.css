@@ -8,6 +8,7 @@
     --dark-mode-background: hsl(207, 26%, 17%);
     --dark-mode-elements: hsl(209, 23%, 22%);
     --its-white: hsl(0, 100%, 100%);
+    --drop-shadow: drop-shadow(0 0 0.55rem rgba(88, 88, 88, 0.137));
     /*Accessibility & Interactivity*/
     --input-focus: hsl(198, 100%, 92%);
     --invalid-response: hsl(0, 81%, 39%);
@@ -49,6 +50,7 @@ h2{
 header{
     padding: 0 8vw;
     background-color: var(--its-white);
+    filter: var(--drop-shadow);
 }
 
 #header-content-container{
@@ -73,6 +75,7 @@ main{
     margin: 0 0.5vw;
     padding: 2vw 0;
 }
+
 #country-search-bar{
     width: 35vw;
     height: 3vw;
@@ -84,6 +87,7 @@ main{
     height: 3vw;
     width: 10vw;
     padding-left: 1vw;
+    margin-left: -3vw;
     border-color: transparent;
     border-radius: var(--input-border-rounded);
 
@@ -106,6 +110,8 @@ ul{
     width: 16vw;
     margin-right: 4vw;
     padding: 0;
+    border: none;
+    filter: var(--drop-shadow);
 }
 .card-img-top{
     height: 9.5vw; 
@@ -115,8 +121,56 @@ ul{
     padding: 1vw;
 }
 
-/*MOBILE*/
-@media (max-width: 450px){
+/*TABLETS / MEDIUM SIZE*/
+@media (1560px >= width >= 560px){
+    /*FONT=============================*/
+    h1{
+        font-size: 1.25rem;
+        font-weight: 800;
+    }
+    h2{
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
+    /*HEADER*/
+    main{
+        padding-left: 13vw;
+    }
+
+    /*Interaction Bar =================*/
+    #interaction-query-container{
+        margin: 0 0.5vw;
+        padding-top: 2vw;
+    }
+    #country-search-bar{
+        width: 45vw;
+        height: 5vw;
+        font-size: 1rem;
+    }
+    #region-select{
+        height: 5vw;
+        width: 15vw;
+        padding-left: 1vw;
+        margin-left: -11vw;
+        font-size: 0.85rem;
+    }
+    /*Cards ==========================*/
+    .card{
+        width: 20vw;
+        height: auto;
+    }
+    .card-img-top{
+        height: 12vw; 
+    }
+
+    .card-body{
+        font-size: 0.7rem;
+    }
+}
+
+
+/*MOBILE SMALL*/
+@media (max-width: 550px){
     #search-error{
         margin-top: -7vw;
         margin-bottom: 5vw;
@@ -126,7 +180,7 @@ ul{
         font-size: 1rem;
     }
     h2{
-        font-size: 0.75rem;
+        font-size: 1.2rem;
     }
     /*HEADER*/
     #header-content-container{
@@ -147,17 +201,23 @@ ul{
     #region-select{
         height: 13vw;
         width: 50vw;
+        margin: 0;
         border-radius: var(--input-border-rounded-mobile);
     }
 
     /*CARDS*/
     .card{
         width: 61vw;
+        height: auto;
         margin: auto 0 10.5vw 5vw;
     }
 
     .card-img-top{
-    height: 36vw; 
+        height: 36vw; 
+    }
+    .card-body{
+        font-size: 1rem;
+        padding: 5vw;
     }
 
 }
