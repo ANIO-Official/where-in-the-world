@@ -9,8 +9,8 @@ const searchError = document.getElementById('search-error');
 const themeToggler = document.getElementById('theme-toggler');
 
 
-let countries; //Holds object data array returned from fetch request
-let cardsData; //Holds CountryCard objects (Data)
+let countries = []; //Holds object data array returned from fetch request
+let cardsData = []; //Holds CountryCard objects (Data)
 
 //==============CLASSES=============
 
@@ -73,9 +73,9 @@ class FetchError extends Error {
 //Load default results
 document.addEventListener('DOMContentLoaded', renderCards);
 /* Filter Items by Country */
-DOMCache.countrySearchBar?.addEventListener('keydown', searchForCountry); //load list on filter by Country
+countrySearchBar.addEventListener('keydown', searchForCountry); //load list on filter by Country
 /* Filter Items by Region */
-DOMCache.regionSelect?.addEventListener('change', filterByRegion); //load list on filter by Region
+regionSelect.addEventListener('change', filterByRegion); //load list on filter by Region
 /* Theme Toggler */ 
 
 //================API FETCH REQUEST======================
@@ -90,6 +90,7 @@ async function fetchCountries() {
         if (countries === undefined || null) {
             throw new DataError('Data returned Undefined. Failed to parse response data from API. Check fetch request, API status, or syntax.');
         }
+        console.log('We got a response!')
     }
     catch (error) {
         if (error instanceof FetchError) {
@@ -108,6 +109,7 @@ async function fetchCountries() {
     finally {
         console.log('Fetch request complete: Fetched country data from REST Countries API.');
     }
+    console.log(countries[1])
     return countries;
 }
 //================DYNAMIC CONTENT CREATION======================
@@ -126,24 +128,28 @@ function createFragment(array) {
      Create a HTML Card (li element) based on the template cloned
      for each item in the cardsData array
     */
-    array.map((country) => {
+   console.log('Test in Fragment', cardsData[1])
+
+   for (let object of array){
         //Clone the card template and cache it's parts to edit per country rendered
         const cardLI = cardTemplate.cloneNode(true);
-        const cardImgTop = cardLI.querySelector('.card-image-top');
+        const cardImgTop = cardLI.querySelector('.card-img-top');
         const cardTitle = cardLI.querySelector('.card-title');
         const cardText = cardLI.querySelector('.card-text');
+        
         //Display Setup
         cardLI.style.display = 'block';
         cardLI.classList.remove('card-template'); //Remove template class.
-        cardImgTop.src = country.flag;
-        cardImgTop.alt = country.altText;
-        cardTitle.textContent = country.name;
+        cardImgTop.src = object.flag;
+        cardImgTop.alt = object.altText;
+        cardTitle.textContent = object.name;
         cardText.innerHTML = `
-            <b>Population:</b> ${country.population}<br>
-            <b>Region:</b> ${country.region}<br>
-            <b>Capital:</b> ${country.capital}<br>`;
+            <b>Population:</b> ${object.population}<br>
+            <b>Region:</b> ${object.region}<br>
+            <b>Capital:</b> ${object.capital}<br>`;
+
         fragment.appendChild(cardLI); //Attach to fragment
-    });
+   }
     cardsBatch.innerHTML = ''; //Clear the batch
     cardsBatch.appendChild(fragment); //Attach the rendered cards
 }
@@ -161,9 +167,13 @@ async function renderCards() {
     
     */
     await fetchCountries();
-    cardsData = countries.map((country) => {
-        new CountryCard(country.flag.png, country.flag.alt, country.name.common, country.population, country.region, country.capital);
-    });
+    console.log('Test in Render Cards:', countries[1])
+    console.log('The second country flag:', countries[1].flags.png)
+    for (let country of countries){
+        const newCard = new CountryCard(country.flags.png, country.flags.alt, country.name.common, country.population, country.region, country.capital[0]);
+        cardsData.push(newCard)
+    }
+    console.log('This is card Data 2nd country', cardsData[1])
     createFragment(cardsData);
 }
 //================FILTER CONTENT FUNCTIONALITY======================
@@ -229,5 +239,5 @@ countrySearchBar.addEventListener('input', (event) => {
             break;
         default: countrySearchBar.setCustomValidity('');
     }
-    searchError?.textContent = countrySearchBar.validationMessage;
+    searchError.textContent = countrySearchBar.validationMessage;
 });
