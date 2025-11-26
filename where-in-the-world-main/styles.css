@@ -11,6 +11,7 @@
     --drop-shadow: drop-shadow(0 0 0.55rem rgba(88, 88, 88, 0.137));
     /*Accessibility & Interactivity*/
     --input-focus: hsl(198, 100%, 92%);
+    --button-hover: hsl(198, 78%, 25%);
     --invalid-notification: hsl(204, 100%, 26%);
     --invalid-response: hsl(49, 100%, 60%);
     --valid-response: hsl(145, 81%, 39%);
@@ -21,6 +22,10 @@ input:focus, select:focus, button:focus{
     background-color: var(--input-focus);
     outline: 2px solid var(--invalid-notification);
     filter: var(--drop-shadow-focus);
+}
+#back-button:hover, #theme-toggler:hover{
+    background-color: var(--button-hover);
+    color: var(--its-white);
 }
 
 input:user-valid{
@@ -63,6 +68,8 @@ header{
 #theme-toggler{
     background-color: transparent;
     border: transparent;
+    padding: 0.5vw 1vw;
+    border-radius: var(--input-border-rounded);
 }
 #toggle-text{
     font-weight:600;
@@ -125,6 +132,18 @@ ul{
     padding: 1vw;
 }
 /*DETAILS 'PAGE'=============================*/
+#back-button-container{
+    margin-top: 2vw;
+    margin-bottom: 4vw;
+}
+#back-button{
+    padding: 0.5vw 2.5vw;
+    background-color: var(--its-white);
+    border-color: transparent;
+    border-radius: var(--input-border-rounded);
+    filter: var(--drop-shadow);
+}
+
 #detail-information-container h2{
     font-weight:normal;
 }
@@ -138,7 +157,7 @@ ul{
     font-weight: 800;
 }
 #detail-panel-bottom{
-    margin-top: 8vw;
+    margin-top: 2vw;
 }
 .detail-border-country{
     border: 2px solid var(--light-mode-background);
@@ -214,6 +233,11 @@ ul{
         height:20vw;
         padding-top: 2vw;
     }
+    #theme-toggler{
+        border-radius: 5vw;
+        padding-top: 3vw;
+        padding-right: 2vw;
+    }
     /*Interaction Query Container*/
     #interaction-query-container{
         padding-top: 3vw;
@@ -247,4 +271,29 @@ ul{
         padding: 5vw;
     }
 
+    /*DETAILS 'PAGE'=============================*/
+    #back-button-container{
+        margin-top: 11vw;
+        margin-bottom: 15vw;
+    }
+    #flag-img{
+        height: 52vw;
+        width: 75vw;
+        margin-bottom: 10vw;
+    }
+    #detail-country-name{
+        font-size: 1.5rem;
+    }
+    #detail-information-container h2{
+        font-size: 1rem;
+    }
+    #detail-panel-bottom{
+        margin-top: 8vw;
+    }
+    .detail-border-country{
+        font-size: 0.9rem;
+        padding: 0.25vw 2vw;
+        margin-left: 3vw;
+        width: fit-content;
+    }
 }
