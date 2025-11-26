@@ -206,26 +206,28 @@ function filterByRegion() {
             console.log(`Showing ${countriesOfAfrica.length} results.`); //check
             break;
         case regionSelect.value === "America":
-            const countriesOfAmerica = regionSearch(cardsData, "Africa"); //find and cache results into variable
+            const countriesOfAmerica = regionSearch(cardsData, "America"); //find and cache results into variable
             createFragment(countriesOfAmerica); //render results to document
             console.log(`Showing ${countriesOfAmerica.length} results.`); //check
             break;
         case regionSelect.value === "Asia":
-            const countriesOfAsia = regionSearch(cardsData, "Africa"); //find and cache results into variable
+            const countriesOfAsia = regionSearch(cardsData, "Asia"); //find and cache results into variable
             createFragment(countriesOfAsia); //render results to document
             console.log(`Showing ${countriesOfAsia.length} results.`); //check
             break;
         case regionSelect.value === "Europe":
-            const countriesOfEurope = regionSearch(cardsData, "Africa"); //find and cache results into variable
+            const countriesOfEurope = regionSearch(cardsData, "Europe"); //find and cache results into variable
             createFragment(countriesOfEurope); //render results to document
             console.log(`Showing ${countriesOfEurope.length} results.`); //check
             break;
         case regionSelect.value === "Oceania":
-            const countriesOfOceania = regionSearch(cardsData, "Africa"); //find and cache results into variable
+            const countriesOfOceania = regionSearch(cardsData, "Oceania"); //find and cache results into variable
             createFragment(countriesOfOceania); //render results to document
             console.log(`Showing ${countriesOfOceania.length} results.`); //check
             break;
         default:
+           createFragment(cardsData) //show all
+           console.log(`Showing all results.`);
     }
 }
 //================INPUT FIELD VALIDATION======================
