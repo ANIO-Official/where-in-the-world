@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,13 @@
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
 
     <script defer src="./index.js"></script>
 </head>
+
 <body class="d-flex flex-column justify-content-center d-md-inline">
     <header class="d-flex">
         <div id="header-content-container" class="row-cols-md d-flex justify-content-between align-items-center">
@@ -25,19 +29,24 @@
                 <h1>Where in the world?</h1>
             </div>
             <div id="theme-toggler-container" class="row-cols-md d-flex align-items-center">
-                <button id="theme-toggler"><h2 id="toggle-text">🌙 Dark Mode</h2></button>
+                <button id="theme-toggler">
+                    <h2 id="toggle-text">🌙 Dark Mode</h2>
+                </button>
             </div>
         </div>
     </header>
     <main>
-        <div id="interaction-query-container" class="row row-cols-md d-flex flex-column flex-md-row justify-content-between mb-4">
+        <search id="interaction-query-container"
+            class="row row-cols-md d-flex flex-column flex-md-row justify-content-between mb-4">
             <div id="country-search-bar-container" class="col-md-10 d-flex flex-column">
-                <input id="country-search-bar" class="shadow-sm" type="search" placeholder="Search for a country... Try 'Cambodia!'" 
-                minlength="3" pattern="[a-z A-Z]+">
+                <input id="country-search-bar" class="shadow-sm" type="search" name="search"
+                    placeholder="Search for a country... Try 'Cambodia!'" minlength="3" pattern="[a-z A-Z]+"
+                    spellcheck="true" aria-label="Search for a country by name." hidden>
                 <span id="search-error"></span>
             </div>
             <div id="region-select-container" class="col-md-2">
-                <select name="region" id="region-select" class="shadow-sm">
+                <select name="region" id="region-select" class="shadow-sm" aria-label="Search for countries by region."
+                    hidden>
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
                     <option value="America">America</option>
@@ -46,24 +55,67 @@
                     <option value="Oceania">Oceania</option>
                 </select>
             </div>
-        </div>
-        <div id="main-content-container" class="row pt-4">
-                <div id="card-grid-container">
-                    <ul id="cards-batch" class="row row-cols-4">
-                        <li class="card-template card col" style="display: none;">
-                            <img src="..." class="card-img-top" alt="national-flag" />
-                            <div class="card-body">
-                                <h2 class="card-title">Country Name</h2>
-                                <p class="card-text pb-4 pt-1">
-                                    <b>Population:</b> 99,999,999<br>
-                                    <b>Region:</b> Europe<br>
-                                    <b>Capital:</b> Belin<br>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+        </search>
+        <!-- hidden -->
+        <section id="country-details-container" class="row">
+            <div id="detail-image-container" class="col-md-6">
+                <img src="..." id="flag-img" alt="">
+            </div>
+            <div id="detail-information-container" class="col-md-6 row-cols-md">
+                <div id="detail-country-name-container" class="row">
+                    <p id="detail-country-name">Belgium</p>
+                </div>
+                <div id="detail-panels-container" class="row">
+                    <div id="detail-panel-left" class="col-md-6">
+                        <h2 id="information-left">
+                            <!--Template Literal-->
+                            <b>Native Name:</b> Belgie<br>
+                            <b>Population:</b> 99,999,999<br>
+                            <b>Region:</b> Europe<br>
+                            <b>Sub Region:</b> Western Europe<br>
+                            <b>Capital:</b> Berlin<br>
+                        </h2>
+                    </div>
+                    <div id="detail-panel-right" class="col-md-6">
+                        <h2 id="information-right">
+                            <!--Template Literal-->
+                            <b>Top Level Domain:</b> .be<br>
+                            <b>Currencies:</b> Euro<br>
+                            <b>Languages:</b>Dutch, French, German<br>
+                        </h2>
+                    </div>
+                    <div id="detail-panel-bottom" class="col-md-12 d-flex flex-column flex-md-row align-items-md-center">
+                        <h2 class="pe-4">Border Countries: </h2>
+                        <div id="detail-border-countries">
+                            <!--Template Literal of p tags per country
+                        For of / Map / Other method
+                        create a paragraph element for it.
+                        Styled in css
+                        -->
+                            <p class="detail-border-country">Example Country</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+        <section id="main-content-container" class="row pt-4" hidden>
+            <div id="card-grid-container">
+                <ul id="cards-batch" class="row row-cols-4">
+                    <li class="card-template card col" style="display: none;">
+                        <img src="..." class="card-img-top" alt="national-flag" />
+                        <div class="card-body">
+                            <h2 class="card-title">Country Name</h2>
+                            <p class="card-text pb-4 pt-1">
+                                <b>Population:</b> 99,999,999<br>
+                                <b>Region:</b> Europe<br>
+                                <b>Capital:</b> Belin<br>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </main>
 </body>
+
 </html>

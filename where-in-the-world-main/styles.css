@@ -14,11 +14,13 @@
     --invalid-notification: hsl(204, 100%, 26%);
     --invalid-response: hsl(49, 100%, 60%);
     --valid-response: hsl(145, 81%, 39%);
-
+    --drop-shadow-focus: drop-shadow(0 0 0.35rem rgba(0, 225, 255, 0.205));
 }
 /*ACCESSIBILITY & INTERACTIVITY=============================*/
-input:focus, select:focus{
+input:focus, select:focus, button:focus{
     background-color: var(--input-focus);
+    outline: 2px solid var(--invalid-notification);
+    filter: var(--drop-shadow-focus);
 }
 
 input:user-valid{
@@ -103,6 +105,7 @@ select option:last-of-type{
     border-radius: 5vw;
 }
 
+
 /*Cards*/
 ul{
     gap: 4vw 0;
@@ -120,6 +123,29 @@ ul{
 }
 .card-body{
     padding: 1vw;
+}
+/*DETAILS 'PAGE'=============================*/
+#detail-information-container h2{
+    font-weight:normal;
+}
+#flag-img{
+    background-color: rgb(211, 211, 211);
+    height: 22vw;
+    width: 35vw;
+}
+#detail-country-name{
+    font-size: 2rem;
+    font-weight: 800;
+}
+#detail-panel-bottom{
+    margin-top: 8vw;
+}
+.detail-border-country{
+    border: 2px solid var(--light-mode-background);
+    border-radius: var(--input-border-rounded);
+    background-color: var(--its-white);
+    padding: 0.25vw 1vw;
+    filter: var(--drop-shadow);
 }
 
 /*TABLETS / MEDIUM SIZE*/
