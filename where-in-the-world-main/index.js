@@ -9,6 +9,9 @@ const searchError = document.getElementById('search-error');
 const themeToggler = document.getElementById('theme-toggler');
 
 
+const mainContent = document.getElementById('main-content-container')
+const countryDetails = document.getElementById('country-details-container')
+
 let countries = []; //Holds object data array returned from fetch request
 let cardsData = []; //Holds CountryCard objects (Data)
 
@@ -52,10 +55,10 @@ class CountryCard {
     - A Capital
         || field: 'capital'
         || type: string
-*/ 
+*/
 //================ERROR HANDLING======================
 
- class DataError extends Error {
+class DataError extends Error {
     constructor(message) {
         super(message);
         this.name = "Data Error";
@@ -68,15 +71,56 @@ class FetchError extends Error {
     }
 }
 
-//================MAIN EVENT HANDLING======================
+//================EVENT HANDLING======================
 
-//Load default results
+/*Load default results*/
 document.addEventListener('DOMContentLoaded', renderCards);
 /* Filter Items by Country */
 countrySearchBar.addEventListener('keydown', searchForCountry); //load list on filter by Country
 /* Filter Items by Region */
 regionSelect.addEventListener('change', filterByRegion); //load list on filter by Region
-/* Theme Toggler */ 
+
+/* Toggle Country Details */
+//Function for filtering for specific country information.
+function getCountry(array, query) {
+        //Filter & return countries in array matching the query
+        return array.filter((country) => country.name.toLowerCase() === query.toLowerCase());
+    }
+
+//Event Delegation: Shows the full details for any country card clicked on the main page.
+cardsBatch.addEventListener('click', (event)=>{
+    /* Display Specific Country Details */
+    /*
+     When card is clicked from the main screen
+     Show the corresponding country's details on the Details screen
+    */
+    if (event.target.classList.contains('card-img-top') || event.target.classList.contains('card-title')) {
+        const card = event.target.closest('li')
+        const countryName = card.querySelector('.card-title').innerText
+        const result = getCountry(cardsData, countryName) //returns an array of a single object
+        const selectedCountry = result[0] //cache the object for manipulation
+        //Setup the Country Details Screen
+        showDetails(selectedCountry)//setup the details page using the clicked country's details
+        toggleMainScreen()
+    }
+})
+//Event Delegation. Click another country to change detail view. Press Back to Return to main
+countryDetails.addEventListener('click', (event)=>{
+     //Hide Details Screen when back button is clicked
+    const backButton = countryDetails.querySelector('#back-button')
+    if (event.target === backButton) {
+        toggleMainScreen()
+    }
+    //Show border country when clicked
+    if (event.target.classList.contains('detail-border-country')) {
+        const nextCountry = event.target.innerText
+        const result = getCountry(cardsData, nextCountry) //returns an array of a single object
+        const selectedCountry = result[0] //cache the object for manipulation
+        showDetails(selectedCountry)
+    }
+})
+
+/* Theme Toggler */
 
 //================API FETCH REQUEST======================
 async function fetchCountries() {
@@ -109,7 +153,6 @@ async function fetchCountries() {
     finally {
         console.log('Fetch request complete: Fetched country data from REST Countries API.');
     }
-    console.log(countries[1])
     return countries;
 }
 //================DYNAMIC CONTENT CREATION======================
@@ -128,15 +171,13 @@ function createFragment(array) {
      Create a HTML Card (li element) based on the template cloned
      for each item in the cardsData array
     */
-   console.log('Test in Fragment', cardsData[1])
-
-   for (let object of array){
+    for (let object of array) {
         //Clone the card template and cache it's parts to edit per country rendered
         const cardLI = cardTemplate.cloneNode(true);
         const cardImgTop = cardLI.querySelector('.card-img-top');
         const cardTitle = cardLI.querySelector('.card-title');
         const cardText = cardLI.querySelector('.card-text');
-        
+
         //Display Setup
         cardLI.style.display = 'block';
         cardLI.classList.remove('card-template'); //Remove template class.
@@ -149,7 +190,7 @@ function createFragment(array) {
             <b>Capital:</b> ${object.capital}<br>`;
 
         fragment.appendChild(cardLI); //Attach to fragment
-   }
+    }
     cardsBatch.innerHTML = ''; //Clear the batch
     cardsBatch.appendChild(fragment); //Attach the rendered cards
 }
@@ -167,15 +208,71 @@ async function renderCards() {
     
     */
     await fetchCountries();
-    console.log('Test in Render Cards:', countries[1])
-    console.log('The second country flag:', countries[1].flags.png)
-    for (let country of countries){
+    for (let country of countries) {
         const newCard = new CountryCard(country.flags.png, country.flags.alt, country.name.common, country.population, country.region, country.capital[0]);
         cardsData.push(newCard)
     }
-    console.log('This is card Data 2nd country', cardsData[1])
+    console.log('Checking Data...Example...Country 2 Information:', cardsData[1])
     createFragment(cardsData);
 }
+
+
+/* Detail Page Setup. Accepts a country object with data as a parameter */
+function showDetails(country) {
+    //Cache the parts of the Details screen
+    const countryFlag = countryDetails.querySelector('#flag-img')
+    const countryName = countryDetails.querySelector('#detail-country-name')
+    const informationlLeft = countryDetails.querySelector('#information-left')
+    const informationRight = countryDetails.querySelector('#information-right')
+    // const borderCountries = countryDetails.querySelector('#detail-border-countries')
+
+    console.log(`setting up the following country ${country}`)
+    //Set the values of all parts
+    countryFlag.src = country.flag
+    countryFlag.alt = country.altText
+    countryName.innerText = country.name
+    informationlLeft.innerHTML = `
+        <b>Native Name:</b> NativeName<br>
+        <br>
+        <b>Population:</b> ${country.population}<br>
+        <br>
+        <b>Region:</b> ${country.region}<br>
+        <br>
+        <b>Sub Region:</b>Sub Region<br>
+        <br>
+        <b>Capital:</b> ${country.capital}<br>
+    `
+    informationRight.innerHTML = `
+        <b>Top Level Domain:</b> .ex<br>
+        <br>
+        <b>Currencies:</b> Euro<br>
+        <br>
+        <b>Languages:</b> Dutch, French, German<br>
+    `
+    // for (let borderSister of country){
+    //     borderCountries.innerHTML +=`<p class="detail-border-country col-4">${borderSister}</p>`
+    // }
+
+}
+
+/* Show/Hide Country Details Screen. Used above and for backbutton on details screen*/
+function toggleMainScreen() {
+    if (countryDetails.hidden) {
+        countrySearchBar.hidden = true
+        regionSelect.hidden = true
+        mainContent.hidden = true
+        countryDetails.hidden = false
+        console.log('Showing Main screen')//check
+        return
+    }
+    countrySearchBar.hidden = false
+    regionSelect.hidden = false
+    mainContent.hidden = false
+    countryDetails.hidden = true
+    console.log('Showing Details Screen')//check
+    return
+}
+
 //================FILTER CONTENT FUNCTIONALITY======================
 //Filter Data Array by Country then load filtered results
 function searchForCountry() {
@@ -193,8 +290,8 @@ function searchForCountry() {
 }
 
 //Remove Filter on Empty and Unfocus. Show all results
-countrySearchBar.addEventListener('blur', ()=>{
-    if(countrySearchBar.value === ""){
+countrySearchBar.addEventListener('blur', () => {
+    if (countrySearchBar.value === "") {
         createFragment(cardsData) //render document fragment of stored data
         console.log('Returning unfiltered feed.')
     }
@@ -235,8 +332,8 @@ function filterByRegion() {
             console.log(`Showing ${countriesOfOceania.length} results.`); //check
             break;
         default:
-           createFragment(cardsData) //show all
-           console.log(`Showing all results.`);
+            createFragment(cardsData) //show all
+            console.log(`Showing all results.`);
     }
 }
 //================INPUT FIELD VALIDATION======================
@@ -248,7 +345,7 @@ countrySearchBar.addEventListener('input', (event) => {
         case countrySearchBar.validity.tooShort:
             countrySearchBar.setCustomValidity("3 characters minimum. It makes your search must easier. (o゜▽゜)o☆");
             break;
-        case countrySearchBar.validity.valid && cardsBatch.childElementCount===0:
+        case countrySearchBar.validity.valid && cardsBatch.childElementCount === 0:
             countrySearchBar.setCustomValidity("Valid but no results! ○|￣|_ (。_。)(＃°Д°)")
             break;
         default: countrySearchBar.setCustomValidity('');

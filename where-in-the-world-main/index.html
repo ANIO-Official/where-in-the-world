@@ -37,7 +37,7 @@
     </header>
     <main>
         <!-- hidden -->
-        <section id="country-details-container" class="row">
+        <section id="country-details-container" class="row" hidden>
             <div id="back-button-container" class="col-12">
                 <button id="back-button">⇽ Back</button>
             </div>
@@ -82,9 +82,7 @@
                             create a paragraph element for it.
                             Styled in css
                             -->
-                            <p class="detail-border-country col-4">Example Country</p>
-                            <p class="detail-border-country col-4">Example Country</p>
-                            <p class="detail-border-country col-4">Example Country</p>
+
                         </div>
                     </div>
                 </div>
@@ -95,12 +93,11 @@
             <div id="country-search-bar-container" class="col-md-10 d-flex flex-column">
                 <input id="country-search-bar" class="shadow-sm" type="search" name="search"
                     placeholder="Search for a country... Try 'Cambodia!'" minlength="3" pattern="[a-z A-Z]+"
-                    spellcheck="true" aria-label="Search for a country by name." hidden>
+                    spellcheck="true" aria-label="Search for a country by name.">
                 <span id="search-error"></span>
             </div>
             <div id="region-select-container" class="col-md-2">
-                <select name="region" id="region-select" class="shadow-sm" aria-label="Search for countries by region."
-                    hidden>
+                <select name="region" id="region-select" class="shadow-sm" aria-label="Search for countries by region.">
                     <option value="">Filter by Region</option>
                     <option value="Africa">Africa</option>
                     <option value="America">America</option>
@@ -110,10 +107,10 @@
                 </select>
             </div>
         </search>
-        <section id="main-content-container" class="row pt-4" hidden>
+        <section id="main-content-container" class="row pt-4">
             <div id="card-grid-container">
                 <ul id="cards-batch" class="row row-cols-4">
-                    <li class="card-template card col" style="display: none;">
+                    <li class="card-template card col" style="display: none;" tabindex="0" aria-label="View more country details?">
                         <img src="..." class="card-img-top" alt="national-flag" />
                         <div class="card-body">
                             <h2 class="card-title">Country Name</h2>
