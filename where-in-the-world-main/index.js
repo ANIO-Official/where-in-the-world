@@ -126,17 +126,17 @@ function getAllValues(object) {
 //return countries matching the country codes (cioc) from the result borders property.
 function getCountriesByCode(result) {
   let allCountries = []; //holds the matching countries results
-  console.log(`Borders for ${result}}: ${result.borders}`);
+  console.log(`Borders for ${result.name.common}: ${result.borders}`);
   for (let code of result.borders) {
     //For each cioc code string in the borders property
     const countryCodeMatch = countryCodes.filter(
       (country) => country.cioc.toLowerCase() === code.toLowerCase()
     );
     if (countryCodeMatch.length !== 0) {//only push when a country returns.
-      console.log(`${code} matched with ${countryCodeMatch}`);
+      console.log(`${code} matched with ${countryCodeMatch[0].name.common}`);
       allCountries.push(countryCodeMatch[0].name.common); //Use index 0 because filter returns an array
     }
-    else( console.log(`${code} does not have a match`)); //log when there is no country in the API matching.
+    else( console.log(`${code} does not have a match in the API.`)); //log when there is no country in the API matching.
     /*
              Above code checks for a matching cioc code. Use toLowerCase to ensure strings are returned for comparison.
              Cache the result that matches to countryCodeMatch.
@@ -172,7 +172,7 @@ async function createDetailedCountryCard(result) {
   const currency = getLastPropertyValue(result.currencies);
   const languages = getAllValues(result.languages);
   const borders = getCountriesByCode(result);
-  console.log("all borders: ", borders);
+  console.log("All bordering countries in the API: ", borders);
 
   return new DetailedCountryCard(
     result.flags.png,
@@ -251,7 +251,7 @@ cardsBatch.addEventListener("click", async (event) => {
   }
 });
 //Event Delegation. Click border country to change detail view. Press Back to Return to main
-countryDetails.addEventListener("click", (event) => {
+countryDetails.addEventListener("click", async (event) => {
   //Filter 'countries array' for specific country information.
 
   //Hide Details Screen when back button is clicked
@@ -262,9 +262,11 @@ countryDetails.addEventListener("click", (event) => {
   //Show border country when clicked
   if (event.target.classList.contains("detail-border-country")) {
     const borderCountry = event.target.innerText; //border country <p>
+    console.log(`Showing Details for Border Country: ${borderCountry}`)
     const data = getCountryData(borderCountry); //returns an array of a single object
     const result = data[0]; //cache the object for manipulation
-    const selectedCountry = createDetailedCountryCard(result);
+    const selectedCountry = await createDetailedCountryCard(result);
+    console.log(selectedCountry)
     showDetails(selectedCountry);
   }
 });
@@ -443,7 +445,6 @@ function showDetails(country) {
     "#detail-border-countries"
   );
 
-  console.log(`setting up the following country ${country}`);
   //Set the values of all parts
   countryFlag.src = country.flag;
   countryFlag.alt = country.altText;
@@ -483,14 +484,14 @@ function toggleMainScreen() {
     regionSelect.hidden = true;
     mainContent.hidden = true;
     countryDetails.hidden = false;
-    console.log("Showing Main screen"); //check
+    console.log("Showing Details screen"); //check
     return;
   }
   countrySearchBar.hidden = false;
   regionSelect.hidden = false;
   mainContent.hidden = false;
   countryDetails.hidden = true;
-  console.log("Showing Details Screen"); //check
+  console.log("Showing Main Screen"); //check
   return;
 }
 
