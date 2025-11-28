@@ -132,10 +132,11 @@ function getCountriesByCode(result) {
     const countryCodeMatch = countryCodes.filter(
       (country) => country.cioc.toLowerCase() === code.toLowerCase()
     );
-    console.log(`${code} matched with ${countryCodeMatch}`);
-    if (countryCodeMatch !== undefined || null || 0) {
+    if (countryCodeMatch.length !== 0) {//only push when a country returns.
+      console.log(`${code} matched with ${countryCodeMatch}`);
       allCountries.push(countryCodeMatch[0].name.common); //Use index 0 because filter returns an array
     }
+    else( console.log(`${code} does not have a match`)); //log when there is no country in the API matching.
     /*
              Above code checks for a matching cioc code. Use toLowerCase to ensure strings are returned for comparison.
              Cache the result that matches to countryCodeMatch.
@@ -465,7 +466,12 @@ function showDetails(country) {
         <br>
         <b>Languages:</b> ${country.languages}<br>
     `;
-  for (let borderCountry of country.borders) {
+  borderCountries.innerHTML = " " //clear before updating
+  
+  if(country.borders.length === 0){ //show when none
+    borderCountries.innerHTML = '<p>None (。_。)</p>'
+  }
+  for (let borderCountry of country.borders) { //show all countries that border
     borderCountries.innerHTML += `<p class="detail-border-country col-4">${borderCountry}</p>`;
   }
 }
