@@ -125,7 +125,7 @@ ul{
     border: none;
     filter: var(--drop-shadow);
 }
-.card:hover{
+.card:hover {
     outline: 2px solid var(--invalid-notification);
     filter: var(--drop-shadow-focus);
     cursor: pointer;
@@ -170,10 +170,16 @@ ul{
     border: 2px solid var(--light-mode-background);
     border-radius: var(--input-border-rounded);
     background-color: var(--its-white);
-    padding: 0.25vw 1vw;
+    padding: 0.25vw 2vw;
+    width: fit-content;
+    margin-left: 1vw;
     filter: var(--drop-shadow);
 }
-
+.detail-border-country:hover{
+    outline: 2px solid var(--invalid-notification);
+    filter: var(--drop-shadow-focus);
+    cursor: pointer;
+}
 /*TABLETS / MEDIUM SIZE*/
 @media (1560px >= width >= 560px){
     /*FONT=============================*/
