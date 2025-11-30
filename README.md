@@ -32,25 +32,28 @@ Users should be able to:
 ### View Live Website
 
 ### Previews
-DESKTOP | LIGHT MODE
+**DESKTOP | LIGHT MODE**
 
 ![Main Page Light Mode](./final-screenshots/where-in-the-world-light-mode-main-page-ANIO.png)
 ![Detailed Page Light Mode](./final-screenshots/where-in-the-world-light-mode-detailed-page-ANIO.png)
 
-DESKTOP | DARK MODE
+**DESKTOP | DARK MODE**
 
 ![Main Page Dark Mode](./final-screenshots/where-in-the-world-dark-mode-main-page-ANIO.png)
 ![Detailed Page Dark Mode](./final-screenshots/where-in-the-world-dark-mode-detailed-page-ANIO.png)
 
-MOBILE
+**MOBILE**
+
 ![Mobile View](./final-screenshots/where-in-the-world-dark-mode-mobile-page-ANIO.png)
 
-TABLET
+**TABLET**
+
 ![Tablet View](./final-screenshots/where-in-the-world-light-mode-tablet-page-ANIO.png)
 
 
 ## My process
-Quick brief about process. Here are my steps/general steps:
+Brief about my process. Here are my steps:
+
  1. Git init.
 
   - git init in bash terminal within VSCode.
@@ -140,12 +143,83 @@ Quick brief about process. Here are my steps/general steps:
 - TypScript
 
 ## Reflection
+ **Development Process**
 
+ The process was overall very smooth up until the initial TypeScript attempt. I was able to quickly make the webpage responsive with Bootstrap grid and CSS media queries for area tweaks. Creating the JS Code was actually easier due to the way I originally organized my TypeScript modules (models, utility modules, dom-cache for variables). 
+
+ You can read more about my process above at [My process](#my-process).
+ 
+ **Challenges faced**
+ 
+ When I moved onto coding the webpage, I wanted to challenge myself to create the project in TypeScript believing DOM manipulation would work similarly based on how I interpreted TypeScript's DOM documentation. However, I found that multiple errors appeared when I tried to compile the the TS files to JS code. One of which was "document is not defined.". I researched stackoverflow, TypeScript documentation, and previous Per Scholas modules. I did find answers but I did not fully understand them. And with the scope of the project, I did not feel it was the best use of my time to fiddle with TypeScript. I needed to make sure I was able to deliver a final product.
+
+ The only other main problem was a small overlook where I kept forgetting that filter() returned an array when I was filtering for 1 object to return. 
+
+ **Solutions implemented**
+
+ In order to remedy my base TypeScript decision, I first uninitialized NPM and uninstalled TypeScript and it's types from the project by use of "rm -rf node_modules", "rm package-lock.json", deleting all d.ts and .ts files, and finally moving my needed file to a new folder directory. Additionally, I updated my gitHub by deleting any extra directories containing old files (ONLY AFTER migrating the TS modules' code to the JS file). 
+ 
+ To fix the small filter() problem, I took a second look at what was actually returning using console.log of the variable I cached my filter result in. I realized it showed my Object within an array. And I remembered I had to access the the first indexed object to access the specific country's data I needed. Like so: 
+```
+ function getCountryData(query) {
+  //Filter & return the country with a common name matching the query string.
+  return countries.filter(
+    (country) => country.name.common.toLowerCase() === query.toLowerCase()
+  );
+ } 
+ const data = getCountryData(borderCountry); //returns an array of a single object
+ const result = data[0]; //caches the single object in the array.
+ ```
+
+**Potential improvements**
+
+ There are two main places for improvement I can find in this project. 
+ 
+ The first is the organization of my JavaScript code. I did try to organize it well with headers to section off areas. This did help initially, but as I went on and to write more code I found myself unable to find them as easily. Once I understand how to use modules more efficiently in Javascript, I believe I can easily fix this issue. As there would be a decrease of code per module and and increase in quick readability.
+
+ The second is my handling of the Dark Mode toggle. It does work efficiently: the CSS class .dark does make changing the color scheme quick. But I did find that the dynamically created cards when filtering and searching do not update due to them not existing when the variable to hold all list items is cached. Even with the use of ElementsByClassName, the dynamic items from the filter and search did not return. Ultimately, I had to enforce a second function setCardsTheme() to update the cards that generate from the search and filter. I would've liked to hand this in one function rather than two. I am still happy it worked in the end.
  
 
 ### Useful resources
 
-- [Name](link) - Description/comment
+**GENERALLY HELPFUL DURING CODING PROCESS**
+
+- [MDN | Adding Alt Text to Images in JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/alt)
+- [MDN | Returning All Property Values of an Object in JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values)
+- [MDN | Filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+- [MDN | Returning the Keys of an Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys)
+- [MDN | Tab Index (For Cards)](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex)
+- [MDN | ARIA Hidden Vs Hidden](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-hidden)
+- [MDN | Search & Accessibility](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/search)
+- [MDN | Media Queries Usage Methods](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Media_queries/Using)
+- [MDN | Child Element Count of an HTML Element](https://developer.mozilla.org/en-US/docs/Web/API/Element/childElementCount)
+- [MDN | Drop Shadows (Refresher)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow)
+- [Bootstrap | Shadows (Comparison)](https://getbootstrap.com/docs/5.3/utilities/shadows/)
+- [Your Blog App | A previous project with a similarly functioning search filter](https://github.com/ANIO-Official/your-blog-journaling-app)
+
+--------------------------------------------------------
+
+**REMOVING NPM INIT, TYPESCRIPT, AND DUPLICATE/OLD REPOS**
+
+- [GitHub Deleting Files in Repository](https://docs.github.com/en/repositories/working-with-files/managing-files/deleting-files-in-a-repository)
+- [Stack Overflow | NPM Uninit?](https://stackoverflow.com/questions/62061964/how-to-un-init-npm)
+
+- [Stack Overflow | Search in a Form? Yay or Nay?](https://stackoverflow.com/questions/51688517/do-i-need-to-wrap-my-input-field-in-a-form-if-its-just-a-search-function)
+
+--------------------------------------------------------
+
+**CREATING THE DETAILED COUNTRY 'PAGE'**
+
+- [Stack Overflow | Object Object Returns?!](https://stackoverflow.com/questions/47737093/json-parse-returning-object-object-instead-of-value)
+- [Stack Overflow | Accessing the Properties of an object?](https://stackoverflow.com/questions/983267/how-to-access-the-first-property-of-a-javascript-object)
+- [Free Code Camp | Object Object Meaning...](https://www.freecodecamp.org/news/object-object-in-javascript-meaning-in-js/)
+- [Heart of Harmony | A previous project with 2 'Pages'](https://github.com/ANIO-Official/interactive-registration-form)
+
+--------------------------------------------------------
+
+**API DOCUMENTATION**
+- [REST Countries API | Using Endpoints: Codes](https://restcountries.com/#endpoints-code)
+- [REST Countries API | Gitlab | Available Fields](https://gitlab.com/restcountries/restcountries/-/blob/master/FIELDS.md)
 
 ## Author
 
