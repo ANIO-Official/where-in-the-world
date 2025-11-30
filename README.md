@@ -9,6 +9,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [GitHub](#github)
   - [The challenge](#the-challenge)
   - [Link to Website](#view-live-website)
+  - [Previews](#previews)
   - [My process](#my-process)
   - [Built with](#built-with)
   - [Reflection Questions](#reflection-questions)
@@ -16,7 +17,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 - [Author](#author)
 
 ### GitHub Link
-
+https://github.com/ANIO-Official/where-in-the-world 
 ### The challenge
 
 Users should be able to:
@@ -30,7 +31,14 @@ Users should be able to:
 
 ### View Live Website
 
-![image here](url)
+### Previews
+![Main Page Light Mode](./final-screenshots/where-in-the-world-light-mode-main-page-ANIO.png)
+![Detailed Page Light Mode](./final-screenshots/where-in-the-world-light-mode-detailed-page-ANIO.png)
+![Main Page Dark Mode](./final-screenshots/where-in-the-world-dark-mode-main-page-ANIO.png)
+![Detailed Page Dark Mode](./final-screenshots/where-in-the-world-dark-mode-detailed-page-ANIO.png)
+![Mobile View](./final-screenshots/where-in-the-world-dark-mode-mobile-page-ANIO.png)
+![Tablet View](./final-screenshots/where-in-the-world-light-mode-tablet-page-ANIO.png)
+
 
 ## My process
 Quick brief about process. Here are my steps/general steps:
