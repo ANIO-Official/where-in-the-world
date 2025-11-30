@@ -7,6 +7,7 @@ const countrySearchBar = document.getElementById("country-search-bar");
 const regionSelect = document.getElementById("region-select");
 const searchError = document.getElementById("search-error");
 const themeToggler = document.getElementById("theme-toggler");
+let currentTheme = "light";
 
 const mainContent = document.getElementById("main-content-container");
 const countryDetails = document.getElementById("country-details-container");
@@ -132,11 +133,11 @@ function getCountriesByCode(result) {
     const countryCodeMatch = countryCodes.filter(
       (country) => country.cioc.toLowerCase() === code.toLowerCase()
     );
-    if (countryCodeMatch.length !== 0) {//only push when a country returns.
+    if (countryCodeMatch.length !== 0) {
+      //only push when a country returns.
       console.log(`${code} matched with ${countryCodeMatch[0].name.common}`);
       allCountries.push(countryCodeMatch[0].name.common); //Use index 0 because filter returns an array
-    }
-    else( console.log(`${code} does not have a match in the API.`)); //log when there is no country in the API matching.
+    } else console.log(`${code} does not have a match in the API.`); //log when there is no country in the API matching.
     /*
              Above code checks for a matching cioc code. Use toLowerCase to ensure strings are returned for comparison.
              Cache the result that matches to countryCodeMatch.
@@ -198,7 +199,8 @@ document.addEventListener("DOMContentLoaded", renderCards);
 countrySearchBar.addEventListener("keydown", searchForCountry); //load list on filter by Country
 /* Filter Items by Region  ------------------------------*/
 regionSelect.addEventListener("change", filterByRegion); //load list on filter by Region
-
+/* Theme Toggler */
+themeToggler.addEventListener("click", toggleTheme);
 /* Toggle Country Details ------------------------------
  Event Delegation: Shows the full details for any country card clicked on the main page.
  1. Get the Title of the card clicked by accessing the innerText of the card title element.<h2>
@@ -262,16 +264,14 @@ countryDetails.addEventListener("click", async (event) => {
   //Show border country when clicked
   if (event.target.classList.contains("detail-border-country")) {
     const borderCountry = event.target.innerText; //border country <p>
-    console.log(`Showing Details for Border Country: ${borderCountry}`)
+    console.log(`Showing Details for Border Country: ${borderCountry}`);
     const data = getCountryData(borderCountry); //returns an array of a single object
     const result = data[0]; //cache the object for manipulation
     const selectedCountry = await createDetailedCountryCard(result);
-    console.log(selectedCountry)
+    console.log(selectedCountry);
     showDetails(selectedCountry);
   }
 });
-
-/* Theme Toggler */
 
 //================API FETCH REQUEST======================
 
@@ -388,6 +388,7 @@ function createFragment(array) {
 
     //Display Setup
     cardLI.style.display = "block";
+    cardLI.ariaLabel = `View more details about ${object.name}?`;
     cardLI.classList.remove("card-template"); //Remove template class.
     cardImgTop.src = object.flag;
     cardImgTop.alt = object.altText;
@@ -467,13 +468,16 @@ function showDetails(country) {
         <br>
         <b>Languages:</b> ${country.languages}<br>
     `;
-  borderCountries.innerHTML = " " //clear before updating
-  
-  if(country.borders.length === 0){ //show when none
-    borderCountries.innerHTML = '<p>None (。_。)</p>'
+  borderCountries.innerHTML = " "; //clear before updating
+
+  if (country.borders.length === 0) {
+    //show when none
+    borderCountries.innerHTML =
+      "<p>None (Available to view from the REST Countries API at least.) (。_。)</p>";
   }
-  for (let borderCountry of country.borders) { //show all countries that border
-    borderCountries.innerHTML += `<p class="detail-border-country col-4">${borderCountry}</p>`;
+  for (let borderCountry of country.borders) {
+    //show all countries that border
+    borderCountries.innerHTML += `<button class="detail-border-country col-4">${borderCountry}</button>`;
   }
 }
 
@@ -534,30 +538,36 @@ function filterByRegion() {
     case regionSelect.value === "Africa":
       const countriesOfAfrica = regionSearch(cardsData, "Africa"); //find and cache results into variable
       createFragment(countriesOfAfrica); //render results to document
+      setCardsTheme();
       console.log(`Showing ${countriesOfAfrica.length} results.`); //check
       break;
     case regionSelect.value === "America":
       const countriesOfAmerica = regionSearch(cardsData, "America"); //find and cache results into variable
       createFragment(countriesOfAmerica); //render results to document
+      setCardsTheme();
       console.log(`Showing ${countriesOfAmerica.length} results.`); //check
       break;
     case regionSelect.value === "Asia":
       const countriesOfAsia = regionSearch(cardsData, "Asia"); //find and cache results into variable
       createFragment(countriesOfAsia); //render results to document
+      setCardsTheme();
       console.log(`Showing ${countriesOfAsia.length} results.`); //check
       break;
     case regionSelect.value === "Europe":
       const countriesOfEurope = regionSearch(cardsData, "Europe"); //find and cache results into variable
       createFragment(countriesOfEurope); //render results to document
+      setCardsTheme();
       console.log(`Showing ${countriesOfEurope.length} results.`); //check
       break;
     case regionSelect.value === "Oceania":
       const countriesOfOceania = regionSearch(cardsData, "Oceania"); //find and cache results into variable
       createFragment(countriesOfOceania); //render results to document
+      setCardsTheme();
       console.log(`Showing ${countriesOfOceania.length} results.`); //check
       break;
     default:
       createFragment(cardsData); //show all
+      setCardsTheme();
       console.log(`Showing all results.`);
   }
 }
@@ -584,3 +594,45 @@ countrySearchBar.addEventListener("input", (event) => {
   }
   searchError.textContent = countrySearchBar.validationMessage;
 });
+
+//================THEME TOGGLE FUNCTIONS======================
+const header = document.querySelector("header");
+const main = document.querySelector("main");
+const body = document.querySelector("body");
+const cards = document.getElementsByClassName("card");
+const backButton = document.getElementById("back-button");
+
+//Initial Toggle via button
+function toggleTheme() {
+  //Update classes to apply CSS theme
+  header.classList.toggle("dark");
+  main.classList.toggle("dark");
+  body.classList.toggle("dark");
+  countrySearchBar.classList.toggle("dark");
+  regionSelect.classList.toggle("dark");
+  themeToggler.classList.toggle("dark");
+  backButton.classList.toggle("dark");
+  for (let li of cards) {
+    li.classList.toggle("dark");
+  }
+
+  //Update currentTheme & Text for Theme Toggle Button
+  if (currentTheme === "light") {
+    themeToggler.innerHTML = '<h2 id="toggle-text">🍨 Light Mode</h2>';
+    currentTheme = "dark";
+  } else {
+    themeToggler.innerHTML = '<h2 id="toggle-text">🌙 Dark Mode</h2>';
+    currentTheme = "light";
+  }
+  return;
+}
+
+//update Dynamic Content to match
+function setCardsTheme() {
+  if (currentTheme === "dark") {
+    //only update if not dark
+    for (let li of cards) {
+      li.classList.toggle("dark");
+    }
+  }
+}
