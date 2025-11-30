@@ -402,6 +402,7 @@ function createFragment(array) {
   }
   cardsBatch.innerHTML = ""; //Clear the batch
   cardsBatch.appendChild(fragment); //Attach the rendered cards
+  setCardsTheme();
 }
 
 /*
@@ -538,36 +539,30 @@ function filterByRegion() {
     case regionSelect.value === "Africa":
       const countriesOfAfrica = regionSearch(cardsData, "Africa"); //find and cache results into variable
       createFragment(countriesOfAfrica); //render results to document
-      setCardsTheme();
       console.log(`Showing ${countriesOfAfrica.length} results.`); //check
       break;
     case regionSelect.value === "America":
       const countriesOfAmerica = regionSearch(cardsData, "America"); //find and cache results into variable
       createFragment(countriesOfAmerica); //render results to document
-      setCardsTheme();
       console.log(`Showing ${countriesOfAmerica.length} results.`); //check
       break;
     case regionSelect.value === "Asia":
       const countriesOfAsia = regionSearch(cardsData, "Asia"); //find and cache results into variable
       createFragment(countriesOfAsia); //render results to document
-      setCardsTheme();
       console.log(`Showing ${countriesOfAsia.length} results.`); //check
       break;
     case regionSelect.value === "Europe":
       const countriesOfEurope = regionSearch(cardsData, "Europe"); //find and cache results into variable
       createFragment(countriesOfEurope); //render results to document
-      setCardsTheme();
       console.log(`Showing ${countriesOfEurope.length} results.`); //check
       break;
     case regionSelect.value === "Oceania":
       const countriesOfOceania = regionSearch(cardsData, "Oceania"); //find and cache results into variable
       createFragment(countriesOfOceania); //render results to document
-      setCardsTheme();
       console.log(`Showing ${countriesOfOceania.length} results.`); //check
       break;
     default:
       createFragment(cardsData); //show all
-      setCardsTheme();
       console.log(`Showing all results.`);
   }
 }
@@ -630,7 +625,7 @@ function toggleTheme() {
 //update Dynamic Content to match
 function setCardsTheme() {
   if (currentTheme === "dark") {
-    //only update if not dark
+    //only update if dark
     for (let li of cards) {
       li.classList.toggle("dark");
     }
