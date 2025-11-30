@@ -139,8 +139,7 @@ Brief about my process. Here are my steps:
 - JavaScript
 - Semantic HTML
 - CSS
-- BootStrap/Other CSS Libraries
-- TypScript
+- BootStrap
 
 ## Reflection
  **Development Process**
@@ -181,6 +180,8 @@ Brief about my process. Here are my steps:
  
 
 ### Useful resources
+
+--------------------------------------------------------
 
 **GENERALLY HELPFUL DURING CODING PROCESS**
 
