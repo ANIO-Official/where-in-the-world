@@ -124,14 +124,14 @@ function getAllValues(object) {
   const allValues = Object.values(object);
   return allValues;
 }
-//return countries matching the country codes (cioc) from the result borders property.
+//return countries matching the country codes (cca3) from the result borders property.
 function getCountriesByCode(result) {
   let allCountries = []; //holds the matching countries results
   console.log(`Borders for ${result.name.common}: ${result.borders}`);
   for (let code of result.borders) {
-    //For each cioc code string in the borders property
+    //For each cca3 code string in the borders property
     const countryCodeMatch = countryCodes.filter(
-      (country) => country.cioc.toLowerCase() === code.toLowerCase()
+      (country) => country.cca3.toLowerCase() === code.toLowerCase()
     );
     if (countryCodeMatch.length !== 0) {
       //only push when a country returns.
@@ -139,7 +139,7 @@ function getCountriesByCode(result) {
       allCountries.push(countryCodeMatch[0].name.common); //Use index 0 because filter returns an array
     } else console.log(`${code} does not have a match in the API.`); //log when there is no country in the API matching.
     /*
-             Above code checks for a matching cioc code. Use toLowerCase to ensure strings are returned for comparison.
+             Above code checks for a matching cca3 code. Use toLowerCase to ensure strings are returned for comparison.
              Cache the result that matches to countryCodeMatch.
              Add the country's common name to the allCountries array if the country exist in the database.
              return the resulting array.
@@ -152,17 +152,17 @@ async function createDetailedCountryCard(result) {
   /*
         Create a new DetailedCountryCard object with the data matching the country.
         1. Fetch the country codes & names for all countries. First to avoid creating the detailed before all information
-            is returned. The initial fetch request does not include the cioc due to a 10 field request limit on the API.
+            is returned. The initial fetch request does not include the cca3 due to a 10 field request limit on the API.
             Store the resulting country objects in countryCodes.
         2. The native name needed is deeply nested in the names property of country objects.The native name needed will
             always be the last object in the nativeNames object inside the names property. 
             To access it, run the getLastPropertyValue function then cached the result into variable 'lastNativeName'.
         4. Currencies is also a deeply nested property like nativeNAmes. Use getLastPropertyValue to retrieve the currency
             name. Currencies is an object that has one property that holds an object with a name and symbol value.
-        5. The borders property, of the country object in result, holds an array of strings. These strings are cioc codes
+        5. The borders property, of the country object in result, holds an array of strings. These strings are cca3 codes
             representing different countries. In order to get their common names to display, I need to use the fetched codes,
             from step 1, to compare the borders property codes to the countries codes in the countryCodes array.
-            [Like so:  ["AUT","FRA","SMR","SVN","CHE","VAT"] |<--borders compare to countryCodes(country).cioc-->| "AUT" ]
+            [Like so:  ["AUT","FRA","SMR","SVN","CHE","VAT"] |<--borders compare to countryCodes(country).cca3-->| "AUT" ]
         6. Create a DetailedCountryCard object to hold all the properties of the selected country using the data from the 
             country's object data cached in 'result' from the countries array and the cached variables from steps 2-5.  
         */
@@ -283,17 +283,17 @@ async function fetchCountryCodes() {
   try {
     //Fetch name and codes
     const response = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,cioc"
+      "https://restcountries.com/v3.1/all?fields=name,cca3"
     );
     if (!response.ok) {
       throw new FetchError(
-        "Failed to fetch country name and cioc code from REST Countries API."
+        "Failed to fetch country name and cca3 code from REST Countries API."
       );
     }
     countryCodes = await response.json();
     if (countryCodes === undefined || null) {
       throw new DataError(
-        "Country cioc code & name returned Undefined. Failed to parse response data from API. Check fetch request, API status, or syntax."
+        "Country cca3 code & name returned Undefined. Failed to parse response data from API. Check fetch request, API status, or syntax."
       );
     }
     console.log("We got a response for country codes!");
@@ -301,7 +301,7 @@ async function fetchCountryCodes() {
     if (error instanceof FetchError) {
       //for public
       alert(
-        "Error: Could not reach API for country cioc codes. Please try again later."
+        "Error: Could not reach API for country cca3 codes. Please try again later."
       );
       //for devs
       return console.error("Fetch Error:", error.message);
